@@ -4,10 +4,12 @@ import { navBarData } from "@/data/navBarData";
 import Link from "next/link";
 import SearchButton from "./SearchButton"; // Import SearchButton
 import CartButton from "./CartButton"; // Import CartButton
+import TopBar from "./TopBar";
 
 const NavBar: React.FC = () => {
   return (
     <nav className="fixed bg-white/30 backdrop-blur-md text-black uppercase w-full shadow-lg">
+      <TopBar />
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Left-aligned logo */}
@@ -21,7 +23,6 @@ const NavBar: React.FC = () => {
                   className="flex items-center hover:text-gray-500"
                 >
                   {item.label}
-                  {/* Display down arrow if there's a submenu */}
                   {item.submenu && (
                     <svg
                       className="ml-1 w-4 h-4 fill-current text-black group-hover:text-gray-500 transition duration-300"
