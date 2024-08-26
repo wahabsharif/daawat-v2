@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Contact Links */}
-            <div className="ml-auto">
+            <div>
               <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
               <ul className="space-y-2">
                 {footerData.contactInfo.map((contact) => (
@@ -87,9 +87,9 @@ const Footer: React.FC = () => {
 
         <hr className="border-gray-700 dark:border-gray-600" />
 
-        <div className="flex justify-between py-2 text-gray-400 text-sm">
+        <div className="flex flex-col-reverse items-center justify-between py-2 text-gray-400 text-sm sm:flex-row sm:items-start">
           <div className="text-left">
-            <p>
+            <p className="text-xs">
               &copy; {new Date().getFullYear()}
               <Link href="http://daawat.pk/" className="mx-2 text-teal-600">
                 DAAWAT
@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
             </p>
           </div>
           <div className="text-right">
-            <p>
+            <p className="text-xs">
               Designed and Developed By{" "}
               <Link href="http://beacontechh.com/" className="text-teal-600">
                 Beacon Techh
