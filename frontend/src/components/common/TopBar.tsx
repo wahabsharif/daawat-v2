@@ -4,10 +4,10 @@ import { FaPhone, FaFacebookF, FaWhatsapp, FaInstagram } from "react-icons/fa";
 
 const TopBar: React.FC = () => {
   return (
-    <div className="bg-teal-800 text-white flex justify-between items-center py-2 px-10">
+    <div className="bg-red-700 text-lightBg flex justify-between items-center py-2 px-10">
       {/* Left: Phone Call Icon */}
       <div className="flex items-center">
-        <Link href="tel:+1234567890" className="flex items-center text-white">
+        <Link href="tel:+1234567890" className="flex items-center text-lightBg">
           <FaPhone className="text-xl mr-2" />
           <span>+1-234-567-890</span>
         </Link>
