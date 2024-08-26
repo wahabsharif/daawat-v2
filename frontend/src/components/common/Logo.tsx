@@ -2,7 +2,7 @@ import React from "react";
 
 const Logo: React.FC = () => (
   <svg
-    className="fill-current text-darkBg dark:text-lightBg h-10"
+    className="fill-current text-dark dark:text-light h-10"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1002.87 608.49"
   >

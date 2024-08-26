@@ -2,14 +2,14 @@ import React from "react";
 import { navBarData } from "@/data/navBarData";
 import Link from "next/link";
 import SearchButton from "./SearchButton";
-import CartButton from "./CartButton";
+import CartButton from "@/components/cart/CartButton";
 import TopBar from "./TopBar";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
 
 const NavBar: React.FC = () => {
   return (
-    <nav className="fixed bg-white/30 backdrop-blur-md text-darkBg dark:bg-black/30 dark:text-lightBg uppercase w-full shadow-lg transition-colors duration-300">
+    <nav className="fixed bg-white/30 backdrop-blur-md text-dark dark:bg-black/30 dark:text-light uppercase w-full shadow-lg transition-colors duration-300 hidden md:block">
       <TopBar />
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
@@ -26,7 +26,7 @@ const NavBar: React.FC = () => {
                   {item.label}
                   {item.submenu && (
                     <svg
-                      className="ml-1 w-4 h-4 fill-current text-darkBg dark:text-lightBg group-hover:text-gray-500 dark:group-hover:text-gray-300 transition duration-300"
+                      className="ml-1 w-4 h-4 fill-current text-dark dark:text-light group-hover:text-gray-500 dark:group-hover:text-gray-300 transition duration-300"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                     >

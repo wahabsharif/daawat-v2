@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import NavBar from "@/components/common/NavBar";
 import Footer from "@/components/common/Footer";
+import MobileNavBar from "@/components/common/MobileNavBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavBar />
+          <MobileNavBar />
           {children}
           <Footer />
         </ThemeProvider>

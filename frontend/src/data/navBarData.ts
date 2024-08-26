@@ -2,7 +2,7 @@
 export const navBarData = [
   {
     label: "Events",
-    link: "#",
+    link: "/events",
   },
   {
     label: "Catering",
@@ -22,10 +22,10 @@ export const navBarData = [
   },
   {
     label: "HiTea",
-    link: "#",
+    link: "hi-tea",
   },
   {
     label: "Welfare",
-    link: "#",
+    link: "/welfare",
   },
 ];
