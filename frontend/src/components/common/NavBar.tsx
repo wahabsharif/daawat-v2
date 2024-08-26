@@ -1,14 +1,14 @@
-// NavBar.tsx
 import React from "react";
 import { navBarData } from "@/data/navBarData";
 import Link from "next/link";
-import SearchButton from "./SearchButton"; // Import SearchButton
-import CartButton from "./CartButton"; // Import CartButton
+import SearchButton from "./SearchButton";
+import CartButton from "./CartButton";
 import TopBar from "./TopBar";
+import ThemeToggle from "./ThemeToggle";
 
 const NavBar: React.FC = () => {
   return (
-    <nav className="fixed bg-white/30 backdrop-blur-md text-black uppercase w-full shadow-lg">
+    <nav className="fixed bg-white/30 backdrop-blur-md text-black dark:bg-black/30 dark:text-white uppercase w-full shadow-lg transition-colors duration-300">
       <TopBar />
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
@@ -20,12 +20,12 @@ const NavBar: React.FC = () => {
               <li className="relative group" key={index}>
                 <Link
                   href={item.link}
-                  className="flex items-center hover:text-gray-500"
+                  className="flex items-center hover:text-gray-500 dark:hover:text-gray-300"
                 >
                   {item.label}
                   {item.submenu && (
                     <svg
-                      className="ml-1 w-4 h-4 fill-current text-black group-hover:text-gray-500 transition duration-300"
+                      className="ml-1 w-4 h-4 fill-current text-black dark:text-white group-hover:text-gray-500 dark:group-hover:text-gray-300 transition duration-300"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                     >
@@ -34,13 +34,18 @@ const NavBar: React.FC = () => {
                   )}
                 </Link>
                 {item.submenu && (
-                  <ul className="absolute left-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ul className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {item.submenu.map((subitem, subIndex) => (
                       <li
                         key={subIndex}
-                        className="px-4 py-2 hover:bg-gray-200"
+                        className="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
                       >
-                        <Link href={subitem.link}>{subitem.label}</Link>
+                        <Link
+                          href={subitem.link}
+                          className="dark:text-gray-200"
+                        >
+                          {subitem.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -50,6 +55,7 @@ const NavBar: React.FC = () => {
           </ul>
           {/* Right-aligned buttons */}
           <div className="flex space-x-4 items-center">
+            <ThemeToggle />
             <SearchButton />
             <CartButton />
           </div>

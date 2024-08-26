@@ -129,6 +129,7 @@ const config: Config = {
       },
     },
   },
+  darkMode: "class", // Ensures that dark mode is enabled using the class strategy
   plugins: [],
 };
 

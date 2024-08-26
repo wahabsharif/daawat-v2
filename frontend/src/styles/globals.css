@@ -2,15 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root variables for light theme */
 :root {
+  --background-color: #f1f5f9;
+  --text-color: #030712;
+}
+
+/* Dark mode variables */
+.dark {
+  --background-color: #030712;
+  --text-color: #f1f5f9;
 }
 
 body {
   overflow: auto;
   margin: 0;
   padding: 0;
+  background-color: var(--background-color); /* Use background variable */
+  color: var(--text-color); /* Use text variable */
 }
 
+/* Utility class to balance text */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
