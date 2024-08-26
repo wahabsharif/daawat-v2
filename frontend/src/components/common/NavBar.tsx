@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
           {/* Left-aligned logo */}
           <Logo />
           {/* Centered navigation links */}
-          <ul className="flex space-x-4 justify-center flex-1">
+          <ul className="flex space-x-10 justify-center flex-1">
             {navBarData.map((item, index) => (
               <li className="relative group" key={index}>
                 <Link
