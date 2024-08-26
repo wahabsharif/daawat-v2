@@ -5,15 +5,16 @@ import SearchButton from "./SearchButton";
 import CartButton from "./CartButton";
 import TopBar from "./TopBar";
 import ThemeToggle from "./ThemeToggle";
+import Logo from "./Logo";
 
 const NavBar: React.FC = () => {
   return (
-    <nav className="fixed bg-white/30 backdrop-blur-md text-black dark:bg-black/30 dark:text-white uppercase w-full shadow-lg transition-colors duration-300">
+    <nav className="fixed bg-white/30 backdrop-blur-md text-darkBg dark:bg-black/30 dark:text-lightBg uppercase w-full shadow-lg transition-colors duration-300">
       <TopBar />
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Left-aligned logo */}
-          <div className="text-lg font-bold">DAAWAT</div>
+          <Logo />
           {/* Centered navigation links */}
           <ul className="flex space-x-4 justify-center flex-1">
             {navBarData.map((item, index) => (
@@ -25,7 +26,7 @@ const NavBar: React.FC = () => {
                   {item.label}
                   {item.submenu && (
                     <svg
-                      className="ml-1 w-4 h-4 fill-current text-black dark:text-white group-hover:text-gray-500 dark:group-hover:text-gray-300 transition duration-300"
+                      className="ml-1 w-4 h-4 fill-current text-darkBg dark:text-lightBg group-hover:text-gray-500 dark:group-hover:text-gray-300 transition duration-300"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                     >
