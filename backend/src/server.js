@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("./config/db");
+const userRoutes = require("./routes/userRoutes");
 
 // Initialize Express app
 const app = express();
@@ -15,7 +16,8 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-// Define your API routes here
+// Use user routes
+app.use("/api", userRoutes);
 
 // Set the port
 const PORT = process.env.PORT || 5000;
