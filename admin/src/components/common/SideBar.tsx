@@ -3,12 +3,13 @@
 import { FaChartBar, FaCogs, FaHome, FaUsers } from "react-icons/fa";
 import LogoutButton from "@/components/auth/LogoutButton";
 import Link from "next/link";
+import CurrentUser from "./CurrentUser";
 
 const SideBar = () => {
   return (
     <aside className="w-64 h-full bg-teal-900 text-white flex flex-col">
       <div className="flex items-center justify-center p-4 border-b border-slate-400">
-        <h1 className="text-xl font-bold">Admin Dashboard</h1>
+        <CurrentUser />
       </div>
       <nav className="flex-1 p-4">
         <ul>

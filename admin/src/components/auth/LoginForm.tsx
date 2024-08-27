@@ -19,7 +19,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${NEXT_PUBLIC_API_URL}/api/users/login`,
+        `${NEXT_PUBLIC_API_URL}/api/user/login`,
         {
           username,
           password,
