@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const token = localStorage.getItem("token");
       if (token) {
         await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/user/logout`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/users/logout`,
           {},
           {
             headers: {
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     } finally {
       localStorage.removeItem("token");
       setIsAuthenticated(false);
-      router.push("/login");
+      router.push("/");
     }
   };
 

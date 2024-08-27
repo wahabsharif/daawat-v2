@@ -1,38 +1,26 @@
 "use client";
 
 import React from "react";
-import axios from "axios";
-import { useAuth } from "@/contexts/AuthContext";
+import { FaSignOutAlt } from "react-icons/fa";
+import { useAuth } from "@/contexts/AuthContext"; // Adjust the import path according to your project structure
 
-const LogoutButton = () => {
+const LogoutButton: React.FC = () => {
   const { logout } = useAuth();
 
-  const handleLogout = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("Token not found");
-      }
-
-      // Make a request to update the user's isActive status on the server
-      await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/users/logout`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      // Proceed with client-side logout
-      logout();
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
+  const handleLogout = () => {
+    logout();
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <button
+      onClick={handleLogout}
+      className="flex items-center p-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+      aria-label="Logout"
+    >
+      <FaSignOutAlt className="mr-2" />
+      Logout
+    </button>
+  );
 };
 
 export default LogoutButton;

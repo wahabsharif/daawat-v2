@@ -1,4 +1,3 @@
-// src/controllers/userController.js
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -55,7 +54,7 @@ exports.createUser = async (req, res) => {
 
 // Middleware to verify token
 exports.verifyToken = (req, res, next) => {
-  const token = req.headers["authorization"];
+  const token = req.headers["authorization"]?.split(" ")[1]; // Extract token from "Bearer <token>"
 
   if (!token) {
     return res.status(401).json({ error: "No token provided" });
@@ -152,7 +151,7 @@ exports.loginUser = async (req, res) => {
 
 // Logout a user
 exports.logoutUser = (req, res) => {
-  const token = req.headers["authorization"];
+  const token = req.headers["authorization"]?.split(" ")[1]; // Extract token from "Bearer <token>"
 
   if (!token) {
     return res.status(400).json({ error: "No token provided" });
