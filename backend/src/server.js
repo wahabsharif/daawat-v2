@@ -1,4 +1,7 @@
+// src/index.js or src/server.js or wherever you initialize your Express app
+
 const express = require("express");
+const cors = require("cors");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 
@@ -9,6 +12,13 @@ const app = express();
 connectDB();
 
 // Middleware
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Your frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Define routes
