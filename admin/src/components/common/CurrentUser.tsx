@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 const NEXT_PUBLIC_API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
@@ -34,8 +35,9 @@ const CurrentUser: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <p className="capitalize">{fullName}</p>
+    <div className="flex items-center space-x-2 text-cyan-400 font-bold">
+      <MdAdminPanelSettings className="text-3xl" />
+      <p className="uppercase text-2xl">{fullName}</p>
     </div>
   );
 };
