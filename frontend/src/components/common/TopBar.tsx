@@ -1,8 +1,34 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaPhone, FaFacebookF, FaWhatsapp, FaInstagram } from "react-icons/fa";
 
+const NEXT_PUBLIC_API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
 const TopBar: React.FC = () => {
+  const [announcement, setAnnouncement] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchAnnouncement = async () => {
+      try {
+        const response = await fetch(
+          `${NEXT_PUBLIC_API_URL}/api/announcements/type/topBar`
+        );
+        const data = await response.json();
+        // Assuming there's at least one announcement, get the message from the first one
+        if (data.length > 0) {
+          setAnnouncement(data[0].message);
+        }
+      } catch (error) {
+        console.error("Failed to fetch announcement:", error);
+      }
+    };
+
+    fetchAnnouncement();
+  }, []);
+
   return (
     <div className="bg-red-700 text-light justify-between items-center py-2 px-10 hidden md:flex">
       {/* Left: Phone Call Icon */}
@@ -13,12 +39,9 @@ const TopBar: React.FC = () => {
         </Link>
       </div>
 
-      {/* Center: Centered Sentence */}
+      {/* Announcement */}
       <div className="flex-1 text-center text-xs">
-        <span>
-          Donate Sadqa from anywhere in the world to the twin cities through
-          credit/debt card online payment.
-        </span>
+        <p>{announcement || "Loading announcement..."}</p>
       </div>
 
       {/* Right: Social Icons */}

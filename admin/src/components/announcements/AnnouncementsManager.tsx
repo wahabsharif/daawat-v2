@@ -5,6 +5,9 @@ import AnnouncementsForm from "./AnnouncementsForm";
 import AnnouncementsList from "./AnnouncementsList";
 import AnnouncementsEdit from "./AnnouncementsEdit";
 
+const NEXT_PUBLIC_API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
 const AnnouncementsManager: React.FC = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
@@ -16,14 +19,14 @@ const AnnouncementsManager: React.FC = () => {
 
   const fetchAnnouncements = async () => {
     // API call to get announcements
-    const response = await fetch("http://localhost:5000/api/announcements");
+    const response = await fetch(`${NEXT_PUBLIC_API_URL}/api/announcements`);
     const data = await response.json();
     setAnnouncements(data);
   };
 
   const handleCreate = async (announcement: any) => {
     // API call to create announcement
-    const response = await fetch("http://localhost:5000/api/announcements", {
+    const response = await fetch(`${NEXT_PUBLIC_API_URL}/api/announcements`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(announcement),
@@ -38,7 +41,7 @@ const AnnouncementsManager: React.FC = () => {
   const handleUpdate = async (updatedAnnouncement: { _id: any }) => {
     // API call to update announcement
     const response = await fetch(
-      `http://localhost:5000/api/announcements/${updatedAnnouncement._id}`,
+      `${NEXT_PUBLIC_API_URL}/api/announcements/${updatedAnnouncement._id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -54,7 +57,7 @@ const AnnouncementsManager: React.FC = () => {
   const handleDelete = async (id: any) => {
     // API call to delete announcement
     const response = await fetch(
-      `http://localhost:5000/api/announcements/${id}`,
+      `${NEXT_PUBLIC_API_URL}/api/announcements/${id}`,
       { method: "DELETE" }
     );
     if (response.ok) fetchAnnouncements();
