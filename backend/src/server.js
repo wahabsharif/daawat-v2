@@ -6,6 +6,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
+const announcementMessageRoutes = require("./routes/announcementMessageRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 
 // Api Routes
 app.use("/api", userRoutes);
+app.use("/api", announcementMessageRoutes);
 
 // Default route handler
 app.get("/", (req, res) => {
