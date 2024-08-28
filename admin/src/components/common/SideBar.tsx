@@ -35,7 +35,7 @@ const SideBar = () => {
           </li>
           <li className="mb-4">
             <Link
-              href="/admin/users"
+              href="/users"
               className="flex items-center text-gray-300 hover:text-white"
             >
               <FaUsers className="mr-3" />
@@ -44,7 +44,7 @@ const SideBar = () => {
           </li>
           <li className="mb-4">
             <Link
-              href="/admin/reports"
+              href="/reports"
               className="flex items-center text-gray-300 hover:text-white"
             >
               <FaChartBar className="mr-3" />
@@ -58,7 +58,7 @@ const SideBar = () => {
         <ul className="ml-2">
           <li className="mb-4">
             <Link
-              href="/admin/settings"
+              href="/settings"
               className="flex items-center text-xl text-gray-300 hover:text-white"
             >
               <MdSettings className="mr-2" />
