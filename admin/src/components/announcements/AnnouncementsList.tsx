@@ -62,10 +62,10 @@ const AnnouncementsList: React.FC<AnnouncementsListProps> = ({
               <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 uppercase">
                 Type
               </th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 uppercase">
+              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase">
                 Created At
               </th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 uppercase">
+              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase">
                 Updated At
               </th>
               <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 uppercase">
