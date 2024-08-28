@@ -6,6 +6,7 @@ import { FaChartBar, FaHome, FaUsers } from "react-icons/fa";
 import { MdSettings } from "react-icons/md";
 import { GrAnnounce } from "react-icons/gr";
 import CurrentUser from "./CurrentUser";
+import SideBarUserButton from "../users/SideBarUserButton";
 
 const SideBar = () => {
   return (
@@ -34,13 +35,7 @@ const SideBar = () => {
             </Link>
           </li>
           <li className="mb-4">
-            <Link
-              href="/users"
-              className="flex items-center text-gray-300 hover:text-white"
-            >
-              <FaUsers className="mr-3" />
-              Users
-            </Link>
+            <SideBarUserButton />
           </li>
           <li className="mb-4">
             <Link
