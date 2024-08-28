@@ -25,7 +25,7 @@ function HomeBanner() {
           text="Daawat.pk"
         />
         <BlurFade delay={0.25 * 2} inView>
-          <p className="text-dark dark:text-light text-xl md:text-2xl my-4 w-full max-w-3xl h-24 md:h-32 overflow-hidden">
+          <p className="text-dark dark:text-light text-xl md:text-2xl my-4 w-full max-w-3xl md:h-32 overflow-hidden">
             Daawat.pk is Pakistan&apos;s leading online catering service, a
             highly regarded and distinguished name in the catering sector.
           </p>
