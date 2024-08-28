@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #042f2e;
+  color: #d4d4d8;
+  font-family: system-ui, sans-serif; /* Ensure a clean default font */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

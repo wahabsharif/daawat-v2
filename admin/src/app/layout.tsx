@@ -1,3 +1,5 @@
+// src/app/layout.tsx
+
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ReactNode } from "react";
 

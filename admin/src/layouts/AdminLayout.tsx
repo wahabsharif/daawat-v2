@@ -1,4 +1,3 @@
-// components/AdminLayout.tsx
 import React, { ReactNode } from "react";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
 import "@/styles/globals.css";
@@ -13,7 +12,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
     <ProtectedRoute>
       <div className="flex h-screen w-full">
         <SideBar />
-        <main className="flex-1 p-4 w-full bg-teal-100 overflow-y-auto">
+        <main className="ml-64 p-4 w-full bg-teal-100 overflow-y-auto">
           {children}
         </main>
       </div>

@@ -9,7 +9,7 @@ import CurrentUser from "./CurrentUser";
 
 const SideBar = () => {
   return (
-    <aside className="w-64 h-full bg-teal-900 text-white flex flex-col">
+    <aside className="fixed top-0 left-0 w-64 h-full rounded-r-xl bg-teal-900 text-white flex flex-col">
       <div className="flex items-center justify-center p-4 border-b border-slate-400">
         <CurrentUser />
       </div>
