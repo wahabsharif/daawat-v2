@@ -1,5 +1,3 @@
-// components/SideBarUserButton.tsx
-
 "use client";
 
 import { useRouter } from "next/navigation";

@@ -48,19 +48,18 @@ const DeleteUserButton: React.FC<Props> = ({ userId, fullName, onDelete }) => {
       )}
       {confirmDelete && (
         <>
-          <div className="fixed inset-0 flex bg-black backdrop-blur-xl backdrop-saturate-200 items-center justify-center z-50">
-            <div className="bg-white border-4 border-red-0 shadow-lg rounded-lg p-4">
+          <div className="fixed inset-0 flex backdrop-blur-xl backdrop-saturate-200 items-center justify-center z-50">
+            <div className="bg-cyan-800 border-2 border-red-700 shadow-lg rounded-lg p-4">
               <p className="mb-4 text-2xl">
                 Are you sure you want to delete{" "}
                 <span className="uppercase font-bold text-3xl text-lightGold2">
-                  {" "}
                   {fullName}
                 </span>
                 😕 ?
               </p>
               <div className="flex justify-center">
                 <button
-                  className="py-2 px-4 rounded-lg bg-red-0 text-slate-100 mr-2"
+                  className="py-2 px-4 rounded-lg bg-red-800 text-slate-100 mr-2"
                   onClick={handleDelete}
                 >
                   YES
