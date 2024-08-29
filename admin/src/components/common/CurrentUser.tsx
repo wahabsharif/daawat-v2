@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { MdAdminPanelSettings } from "react-icons/md";
 
-const NEXT_PUBLIC_API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const CurrentUser: React.FC = () => {
   const [fullName, setFullName] = useState<string>("");
@@ -22,7 +21,7 @@ const CurrentUser: React.FC = () => {
           },
         };
         const response = await axios.get(
-          `${NEXT_PUBLIC_API_URL}/api/user/me`,
+          `${NEXT_PUBLIC_API_URL}api/user/me`,
           config
         );
         setFullName(response.data.fullName); // Update to fetch fullName

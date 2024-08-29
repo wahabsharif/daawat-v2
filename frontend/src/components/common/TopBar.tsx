@@ -4,8 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaPhone, FaFacebookF, FaWhatsapp, FaInstagram } from "react-icons/fa";
 
-const NEXT_PUBLIC_API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const TopBar: React.FC = () => {
   const [announcement, setAnnouncement] = useState<string | null>(null);
@@ -14,7 +13,7 @@ const TopBar: React.FC = () => {
     const fetchAnnouncement = async () => {
       try {
         const response = await fetch(
-          `${NEXT_PUBLIC_API_URL}/api/announcements/type/topBar`
+          `${NEXT_PUBLIC_API_URL}api/announcements/type/topBar`
         );
         const data = await response.json();
         // Assuming there's at least one announcement, get the message from the first one

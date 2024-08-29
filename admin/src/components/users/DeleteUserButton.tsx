@@ -7,8 +7,7 @@ interface Props {
   onDelete: () => void;
 }
 
-const NEXT_PUBLIC_API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const DeleteUserButton: React.FC<Props> = ({ userId, fullName, onDelete }) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -20,7 +19,7 @@ const DeleteUserButton: React.FC<Props> = ({ userId, fullName, onDelete }) => {
         throw new Error("Token not found in localStorage");
       }
 
-      await axios.delete(`${NEXT_PUBLIC_API_URL}/api/user/${userId}`, {
+      await axios.delete(`${NEXT_PUBLIC_API_URL}api/user/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

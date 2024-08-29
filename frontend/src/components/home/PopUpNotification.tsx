@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
-const NEXT_PUBLIC_API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface Announcement {
   _id: string;
@@ -22,7 +21,7 @@ const PopUpNotification: React.FC = () => {
     const fetchAnnouncements = async () => {
       try {
         const response = await fetch(
-          `${NEXT_PUBLIC_API_URL}/api/announcements/type/popupNotification`
+          `${NEXT_PUBLIC_API_URL}api/announcements/type/popupNotification`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch announcements");

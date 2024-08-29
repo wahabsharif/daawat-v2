@@ -2,7 +2,7 @@ import ShineBorder from "@/components/magicui/shine-border";
 import Image from "next/image";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
-import { homePackagesCardsData } from "@/data/HomePackagesCardsData";
+import { homePackagesCardsData } from "@/data/homePackagesCardsData";
 import Link from "next/link";
 
 export function HomePackages() {

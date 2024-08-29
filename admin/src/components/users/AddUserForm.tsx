@@ -3,8 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const NEXT_PUBLIC_API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface AddUserFormProps {
   onUserAdd: () => void; // Define the prop type for the callback
@@ -53,7 +52,7 @@ const AddUserForm: React.FC<AddUserFormProps> = ({ onUserAdd }) => {
       if (username.length === 0) return; // Skip validation if username is empty
       try {
         const response = await axios.get(
-          `${NEXT_PUBLIC_API_URL}/api/user/${username}`
+          `${NEXT_PUBLIC_API_URL}api/user/${username}`
         );
         if (response.data.exists) {
           setUsernameError("Username already exists.");
@@ -98,7 +97,7 @@ const AddUserForm: React.FC<AddUserFormProps> = ({ onUserAdd }) => {
 
     try {
       const response = await axios.post(
-        `${NEXT_PUBLIC_API_URL}/api/user/register`,
+        `${NEXT_PUBLIC_API_URL}api/user/register`,
         {
           username,
           password,

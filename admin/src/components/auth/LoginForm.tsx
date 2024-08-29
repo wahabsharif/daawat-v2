@@ -5,8 +5,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const NEXT_PUBLIC_API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -19,7 +18,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${NEXT_PUBLIC_API_URL}/api/user/login`,
+        `${NEXT_PUBLIC_API_URL}api/user/login`,
         {
           username,
           password,

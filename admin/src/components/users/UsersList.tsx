@@ -13,8 +13,7 @@ interface UserData {
   isAdmin: boolean;
 }
 
-const NEXT_PUBLIC_API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const UsersList = () => {
   const [userData, setUserData] = useState<UserData[] | null>(null);
@@ -29,7 +28,7 @@ const UsersList = () => {
         if (!token) {
           throw new Error("Token not found in localStorage");
         }
-        const response = await axios.get(`${NEXT_PUBLIC_API_URL}/api/user`, {
+        const response = await axios.get(`${NEXT_PUBLIC_API_URL}api/user`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
