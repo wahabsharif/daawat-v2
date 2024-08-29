@@ -21,21 +21,11 @@ body {
 }
 
 /* Ensure main content area has space for the sidebar */
-main {
-  margin-left: 16rem; /* Adjust based on sidebar width */
-  padding: 1rem; /* Adjust for desired padding */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  height: 100vh; /* Full height of the viewport */
-  box-sizing: border-box; /* Include padding in width/height calculations */
-}
-
-/* Ensure sidebar is fixed and occupies full height */
-aside {
-  z-index: 10; /* Higher than default */
-  position: fixed; /* Fixed position to stay in place */
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 16rem; /* Same as sidebar width */
-  background-color: #042f2e; /* Ensure background covers the full height */
+.admin-layout {
+  margin-left: 16rem;
+  padding: 1rem;
+  overflow-x: hidden;
+  height: 100vh;
+  box-sizing: border-box;
+  width: 100%;
 }
