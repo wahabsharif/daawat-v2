@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
   "https://daawat-admin.vercel.app",
+  "https://daawat-v2.vercel.app",
   "http://localhost:3000",
   "http://localhost:3001",
 ];
