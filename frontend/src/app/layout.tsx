@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "@/styles/globals.css";
-import { ThemeProvider } from "@/components/common/ThemeProvider";
-import NavBar from "@/components/common/NavBar";
 import Footer from "@/components/common/Footer";
 import MobileNavBar from "@/components/common/MobileNavBar";
+import NavBar from "@/components/common/NavBar";
 import ScrollToTop from "@/components/common/ScrollToTop";
-
-const inter = Inter({ subsets: ["latin"] });
+import { ThemeProvider } from "@/components/common/ThemeProvider";
+import "@/styles/globals.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Daawat",
@@ -21,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
+      <body className="flex flex-col min-h-screen">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

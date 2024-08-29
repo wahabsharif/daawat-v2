@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
 /* Root variables for light theme */
 :root {
   --background-color: #f1f5f9;
@@ -22,6 +24,17 @@ body {
   color: var(--text-color); /* Use text variable */
 }
 
+/* Font family */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 /* Utility class to balance text */
 @layer utilities {
   .text-balance {
