@@ -14,7 +14,9 @@ const NavBar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Left-aligned logo */}
-          <Logo />
+          <Link href={"/"}>
+            <Logo />
+          </Link>
           {/* Centered navigation links */}
           <ul className="flex space-x-10 justify-center flex-1">
             {navBarData.map((item, index) => (

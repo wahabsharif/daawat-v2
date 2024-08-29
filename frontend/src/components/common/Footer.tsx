@@ -6,18 +6,20 @@ import daawatLogo from "@/assets/logos/daawat-logo-light.svg";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-gray-800 dark:bg-gray-900 text-white p-4">
+    <footer className="bottom-0 left-0 right-0 bg-gray-800 dark:bg-gray-900 text-white p-4">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-20 mb-8">
           {/* Left Side - Logo and Description */}
           <div className="flex flex-col items-center md:items-start">
-            <Image
-              src={daawatLogo}
-              className="p-2 mb-4"
-              alt="daawat-logo"
-              height={150}
-              width={150}
-            />
+            <Link href={"/"}>
+              <Image
+                src={daawatLogo}
+                className="p-2 mb-4"
+                alt="daawat-logo"
+                height={150}
+                width={150}
+              />
+            </Link>
             <p className="text-gray-400 text-center md:text-left dark:text-gray-500">
               DAAWAT.PK is Pakistan&apos;s premier online catering service,
               launched by Deen Foods and Catering, a renowned and esteemed name
