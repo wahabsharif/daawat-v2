@@ -6,7 +6,7 @@ import daawatLogo from "@/assets/logos/daawat-logo-light.svg";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-800 dark:bg-gray-900 text-white pt-8 transition-colors duration-300">
+    <footer className="fixed bottom-0 left-0 right-0 bg-gray-800 dark:bg-gray-900 text-white p-4">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-20 mb-8">
           {/* Left Side - Logo and Description */}
