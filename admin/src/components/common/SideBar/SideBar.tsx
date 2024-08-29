@@ -6,7 +6,7 @@ import { FaChartBar, FaHome, FaUsers } from "react-icons/fa";
 import { MdSettings } from "react-icons/md";
 import { GrAnnounce } from "react-icons/gr";
 import CurrentUser from "./CurrentUser";
-import SideBarUserButton from "../users/SideBarUserButton";
+import SideBarUserButton from "./SideBarUserButton";
 
 const SideBar = () => {
   return (

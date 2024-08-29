@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
 import "@/styles/globals.css";
-import SideBar from "@/components/common/SideBar";
+import SideBar from "@/components/common/SideBar/SideBar";
 
 export const metadata = {
   title: "Daawat Dashboard",
