@@ -36,7 +36,7 @@ const MobileNavBar: React.FC = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white bg-opacity-30 dark:bg-black dark:bg-opacity-30 backdrop-blur-lg shadow-md z-50 md:hidden">
+    <nav className="playfair-font fixed top-0 left-0 w-full bg-white bg-opacity-30 dark:bg-black dark:bg-opacity-30 backdrop-blur-lg shadow-md z-50 md:hidden">
       <div className="flex justify-between items-center p-4 container mx-auto">
         {/* Left side: Logo */}
         <div className="flex-shrink-0">
