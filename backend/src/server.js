@@ -1,5 +1,3 @@
-// src/server.js
-
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -11,8 +9,30 @@ const announcementMessageRoutes = require("./routes/announcementMessageRoutes");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = [
+  "https://daawat-admin.vercel.app",
+  "http://localhost:3000",
+  "http://localhost:3001",
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+// Use CORS middleware with specified options
+app.use(cors(corsOptions));
+
 // Middleware setup
-app.use(cors());
 app.use(bodyParser.json());
 
 // Api Routes
