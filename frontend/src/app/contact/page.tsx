@@ -1,5 +1,6 @@
 import React from "react";
 import Breadcrumb from "@/components/common/Breadcrumb";
+import { ContactDetails } from "@/components/contact/ContactDetails";
 
 const ContactPage: React.FC = () => {
   const paths = [{ name: "Contact Us" }];
@@ -7,6 +8,7 @@ const ContactPage: React.FC = () => {
   return (
     <>
       <Breadcrumb paths={paths} />
+      <ContactDetails />
     </>
   );
 };
