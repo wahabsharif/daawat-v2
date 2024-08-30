@@ -57,14 +57,7 @@ const menuSchema = new mongoose.Schema(
       },
     ],
     addOns: {
-      type: [
-        {
-          name: {
-            type: String,
-          },
-          options: [String],
-        },
-      ],
+      type: [String],
       default: [],
     },
     packaging: {

@@ -1,6 +1,3 @@
-// src/constants.js
-
-// Define enums for categories and subcategories
 const CATEGORY = [
   "Deals",
   "Food",

@@ -3,7 +3,7 @@
 import LogoutButton from "@/components/auth/LogoutButton";
 import Link from "next/link";
 import { FaChartBar, FaHome, FaUsers } from "react-icons/fa";
-import { MdSettings } from "react-icons/md";
+import { MdSettings, MdOutlineMenuBook } from "react-icons/md";
 import { GrAnnounce } from "react-icons/gr";
 import CurrentUser from "./CurrentUser";
 import SideBarUserButton from "./SideBarUserButton";
@@ -23,6 +23,15 @@ const SideBar = () => {
             >
               <FaHome className="mr-3" />
               Dashboard
+            </Link>
+          </li>
+          <li className="mb-4">
+            <Link
+              href="/menus"
+              className="flex items-center text-gray-300 hover:text-white"
+            >
+              <MdOutlineMenuBook className="mr-3" />
+              Menu
             </Link>
           </li>
           <li className="mb-4">
