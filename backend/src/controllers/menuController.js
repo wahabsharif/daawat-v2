@@ -1,4 +1,5 @@
 const Menu = require("../models/Menu");
+const { CATEGORY, SUB_CATEGORY } = require("../Modules/categories");
 
 // Get all menus with optional filtering by category and subcategory
 const getAllMenus = async (req, res) => {
@@ -38,7 +39,6 @@ const createMenu = async (req, res) => {
   const {
     title,
     slug,
-    id,
     description,
     itemPrice,
     addOns,
@@ -60,7 +60,6 @@ const createMenu = async (req, res) => {
   const menu = new Menu({
     title,
     slug,
-    id,
     description,
     itemPrice,
     addOns,
@@ -70,6 +69,7 @@ const createMenu = async (req, res) => {
   });
 
   try {
+    // Save the menu and trigger SKU generation
     const newMenu = await menu.save();
     res.status(201).json(newMenu);
   } catch (error) {
@@ -77,7 +77,7 @@ const createMenu = async (req, res) => {
   }
 };
 
-// Update an existing menu
+// Update an existing menu by ID
 const updateMenu = async (req, res) => {
   const updateData = req.body;
 
@@ -108,7 +108,7 @@ const updateMenu = async (req, res) => {
   }
 };
 
-// Delete a menu
+// Delete a menu by ID
 const deleteMenu = async (req, res) => {
   try {
     const menu = await Menu.findByIdAndDelete(req.params.id);

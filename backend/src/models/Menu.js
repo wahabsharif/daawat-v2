@@ -1,43 +1,27 @@
 const mongoose = require("mongoose");
+const { CATEGORY, SUB_CATEGORY } = require("../Modules/categories");
 
-// Define enums for categories and subcategories
-const CATEGORY = [
-  "Deals",
-  "Food",
-  "Catering",
-  "Tandoor",
-  "Beverages",
-  "Equipment",
-  "Gifts",
-];
+// Function to generate a unique SKU
+const generateUniqueSKU = async (model) => {
+  const prefix = "DPK";
+  let sku;
+  let isUnique = false;
 
-const SUB_CATEGORY = {
-  Deals: ["Muharram Specials", "Ramadan Deal", "Rabi ul Awal Deal"],
-  Food: [
-    "Rice",
-    "Qorma / Curry",
-    "BBQ",
-    "Sadqa Daig",
-    "Wedding Menu",
-    "Daawat Menu",
-    "Dessert",
-    "Fried / Roast",
-    "Chinese Cuisine",
-    "Nehari / Haleem",
-    "Vegetables",
-    "Halwa Puri Combo",
-    "Add Ons",
-  ],
-  Catering: [
-    "Catering Item Wise",
-    "Catering Per Head",
-    "Crockery Item Wise",
-    "Crockery Per Head",
-  ],
-  Tandoor: ["Tandoor"],
-  Beverages: ["Beverages"],
-  Equipment: ["Heat and Cooling"],
-  Gifts: ["Gift a Daawat"],
+  while (!isUnique) {
+    const randomString = Math.random()
+      .toString(36)
+      .substring(2, 9)
+      .toUpperCase();
+    sku = `${prefix}${randomString}`;
+
+    // Check if SKU already exists
+    const existingMenu = await model.findOne({ sku });
+    if (!existingMenu) {
+      isUnique = true;
+    }
+  }
+
+  return sku;
 };
 
 const menuSchema = new mongoose.Schema(
@@ -51,9 +35,9 @@ const menuSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    id: {
+    sku: {
       type: String,
-      required: true,
+      //   required: true,
       unique: true,
     },
     description: {
@@ -77,8 +61,6 @@ const menuSchema = new mongoose.Schema(
         {
           name: {
             type: String,
-            // Optional: you can add enum for addOns if needed
-            // enum: ADD_ONS,
           },
           options: [String],
         },
@@ -110,6 +92,14 @@ const menuSchema = new mongoose.Schema(
   },
   { timestamps: true } // Enabling timestamps
 );
+
+// Pre-save hook to generate a unique SKU if not provided
+menuSchema.pre("save", async function (next) {
+  if (!this.sku) {
+    this.sku = await generateUniqueSKU(this.constructor);
+  }
+  next();
+});
 
 const Menu = mongoose.model("Menu", menuSchema);
 
