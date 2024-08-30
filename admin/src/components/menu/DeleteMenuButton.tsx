@@ -1,19 +1,18 @@
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { FC } from "react";
 
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface DeleteMenuButtonProps {
   id: string;
+  onDelete: () => void;
 }
 
-const DeleteMenuButton: React.FC<DeleteMenuButtonProps> = ({ id }) => {
-  const router = useRouter();
-
+const DeleteMenuButton: FC<DeleteMenuButtonProps> = ({ id, onDelete }) => {
   const handleDelete = async () => {
     try {
       await axios.delete(`${NEXT_PUBLIC_API_URL}api/menus/${id}`);
-      router.push("/menus");
+      onDelete(); // Trigger the refresh
     } catch (error) {
       console.error("Error deleting menu:", error);
     }

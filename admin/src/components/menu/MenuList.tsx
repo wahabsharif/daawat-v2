@@ -1,19 +1,13 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/navigation";
+import { FC } from "react";
 import Link from "next/link";
 import DeleteMenuButton from "./DeleteMenuButton";
-
-const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface Menu {
   _id: string;
   title: string;
   slug: string;
   description: string;
-  sku: string; // Added SKU field
+  sku: string;
   itemPrice: { shortDescription: string; price: number }[];
   addOns: { name: string; options: string[] }[];
   packaging: string[];
@@ -21,23 +15,12 @@ interface Menu {
   subCategory: string;
 }
 
-const MenuList = () => {
-  const router = useRouter();
-  const [menus, setMenus] = useState<Menu[]>([]);
+interface MenuListProps {
+  menus: Menu[];
+  onMenuDeleted: () => void;
+}
 
-  useEffect(() => {
-    const fetchMenus = async () => {
-      try {
-        const response = await axios.get(`${NEXT_PUBLIC_API_URL}api/menus`);
-        setMenus(response.data);
-      } catch (error) {
-        console.error("Error fetching menus:", error);
-      }
-    };
-
-    fetchMenus();
-  }, []);
-
+const MenuList: FC<MenuListProps> = ({ menus, onMenuDeleted }) => {
   return (
     <div className="p-4 max-w-6xl mx-auto bg-teal-700 rounded shadow-md">
       <h2 className="text-3xl font-semibold mb-4">Menu List</h2>
@@ -48,7 +31,7 @@ const MenuList = () => {
               <th className="p-2 border-b">Title</th>
               <th className="p-2 border-b">Slug</th>
               <th className="p-2 border-b">Description</th>
-              <th className="p-2 border-b">SKU</th> {/* Added SKU header */}
+              <th className="p-2 border-b">SKU</th>
               <th className="p-2 border-b">Item Price</th>
               <th className="p-2 border-b">Add-Ons</th>
               <th className="p-2 border-b">Packaging</th>
@@ -66,7 +49,7 @@ const MenuList = () => {
                 <td className="p-2">{menu.title}</td>
                 <td className="p-2">{menu.slug}</td>
                 <td className="p-2">{menu.description}</td>
-                <td className="p-2">{menu.sku}</td> {/* Added SKU data */}
+                <td className="p-2">{menu.sku}</td>
                 <td className="p-2">
                   {menu.itemPrice.map((item, index) => (
                     <div key={index}>
@@ -91,7 +74,7 @@ const MenuList = () => {
                   >
                     Edit
                   </Link>
-                  <DeleteMenuButton id={menu._id} />
+                  <DeleteMenuButton id={menu._id} onDelete={onMenuDeleted} />
                 </td>
               </tr>
             ))}
