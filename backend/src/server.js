@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const announcementMessageRoutes = require("./routes/announcementMessageRoutes");
 const menuRoutes = require("./routes/menuRoutes");
+const hiTeaRoutes = require("./routes/hiTeaRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -41,6 +42,7 @@ app.use(bodyParser.json());
 app.use("/api", userRoutes);
 app.use("/api", announcementMessageRoutes);
 app.use("/api", menuRoutes);
+app.use("/api", hiTeaRoutes);
 
 // Default route handler
 app.get("/", (req, res) => {
