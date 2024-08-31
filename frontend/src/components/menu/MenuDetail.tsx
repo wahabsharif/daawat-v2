@@ -47,8 +47,8 @@ const MenuDetail: React.FC<MenuDetailProps> = ({ onTitleChange }) => {
   });
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-2">{menu.title}</h1>
+    <section className="p-10">
+      <h1 className="text-4xl font-bold mb-2">{menu.title}</h1>
       {menu.description && <p className="text-lg mb-4">{menu.description}</p>}
 
       <div className="mb-4">
@@ -97,7 +97,7 @@ const MenuDetail: React.FC<MenuDetailProps> = ({ onTitleChange }) => {
           </ul>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
