@@ -6,6 +6,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import TripleLoader from "../common/Loaders/TripleLoader";
+import MenuViewButton from "./MenuViewButton";
 
 const MenuGrid = () => {
   const [menus, setMenus] = useState<Menu[]>([]);
@@ -59,19 +60,27 @@ const MenuGrid = () => {
           return (
             <MagicCard
               key={menu._id}
-              className="cursor-pointer h-64 w-64 flex flex-col items-center justify-center shadow-2xl p-4"
+              className="relative cursor-pointer flex flex-col shadow-2xl p-4"
             >
-              <Link href={`/menu/${menu._id}`}>
-                <h3 className="text-xl font-semibold text-center">
-                  {menu.title}
-                </h3>
-                <p className="text-gray-600 text-center mt-2">
-                  {menu.description}
-                </p>
-                <div className="mt-4 text-xl font-bold text-center">
-                  Starting From {formatter.format(minPrice)}
+              <Link
+                href={`/menu/${menu._id}`}
+                className="flex flex-col h-full w-full"
+              >
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-center">
+                    {menu.title}
+                  </h3>
+                  <p className="text-gray-600 text-center mt-2">
+                    {menu.description}
+                  </p>
+                  <div className="mt-4 text-xl font-bold text-center">
+                    Starting From {formatter.format(minPrice)}
+                  </div>
                 </div>
               </Link>
+              <div className="absolute bottom-1 right-1">
+                <MenuViewButton menuId={menu._id} />
+              </div>
             </MagicCard>
           );
         })}
