@@ -7,6 +7,7 @@ import { MdSettings, MdOutlineMenuBook } from "react-icons/md";
 import { GrAnnounce } from "react-icons/gr";
 import CurrentUser from "./CurrentUser";
 import SideBarUserButton from "./SideBarUserButton";
+import { BsCupHot } from "react-icons/bs";
 
 const SideBar = () => {
   return (
@@ -32,6 +33,15 @@ const SideBar = () => {
             >
               <MdOutlineMenuBook className="mr-3" />
               Menu
+            </Link>
+          </li>
+          <li className="mb-4">
+            <Link
+              href="/hi-tea"
+              className="flex items-center text-gray-300 hover:text-white"
+            >
+              <BsCupHot className="mr-3" />
+              Hi-Tea
             </Link>
           </li>
           <li className="mb-4">
