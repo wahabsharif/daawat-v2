@@ -7,7 +7,6 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
-import store from "@/redux/store";
 
 export const metadata: Metadata = {
   title: "Daawat",
@@ -26,20 +25,20 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex flex-col min-h-screen">
         <GoogleOAuthProvider clientId={NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
-          <Provider store={store}>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <NavBar />
-              <MobileNavBar />
-              <ScrollToTop />
-              <main className="flex-grow">{children}</main>
-              <Footer />
-            </ThemeProvider>
-          </Provider>
+          {/* <Provider store={store}> */}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NavBar />
+            <MobileNavBar />
+            <ScrollToTop />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </ThemeProvider>
+          {/* </Provider> */}
         </GoogleOAuthProvider>
       </body>
     </html>

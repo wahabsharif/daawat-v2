@@ -1,0 +1,70 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { Menu } from "@/types/types";
+import { MagicCard } from "@/components/magicui/magic-card";
+
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+const MenuGrid = () => {
+  const [menus, setMenus] = useState<Menu[]>([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Fetch all menus from the API
+    const fetchMenus = async () => {
+      try {
+        const response = await axios.get(`${NEXT_PUBLIC_API_URL}api/menus`);
+        setMenus(response.data);
+      } catch (error) {
+        console.error("Failed to fetch menus", error);
+      }
+    };
+
+    fetchMenus();
+  }, []);
+
+  const handleClick = (id: string) => {
+    router.push(`/menu/${id}`);
+  };
+
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "PKR",
+    maximumFractionDigits: 0,
+  });
+
+  return (
+    <section className="p-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {menus.map((menu) => {
+          const minPrice = Math.min(
+            ...menu.itemPrice.map((item) => item.price)
+          );
+
+          return (
+            <MagicCard
+              key={menu._id}
+              className="cursor-pointer  h-64 w-64 flex flex-col items-center justify-center shadow-2xl p-4"
+              onClick={() => handleClick(menu._id)}
+            >
+              <h3 className="text-xl font-semibold text-center">
+                {menu.title}
+              </h3>
+              <p className="text-gray-600 text-center mt-2">
+                {menu.description}
+              </p>
+              <div className="mt-4 text-xl font-bold text-center">
+                Starting From {formatter.format(minPrice)}
+              </div>
+            </MagicCard>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
+
+export default MenuGrid;

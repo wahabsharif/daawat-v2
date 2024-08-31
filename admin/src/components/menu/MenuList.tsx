@@ -21,6 +21,13 @@ interface MenuListProps {
 }
 
 const MenuList: FC<MenuListProps> = ({ menus, onMenuDeleted }) => {
+  // Create a number formatter with the desired locale and options
+  const numberFormatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "PKR",
+    minimumFractionDigits: 0,
+  });
+
   return (
     <div className="p-4 max-w-6xl mx-auto bg-teal-700 rounded shadow-md">
       <h2 className="text-3xl font-semibold mb-4">Menu List</h2>
@@ -53,11 +60,18 @@ const MenuList: FC<MenuListProps> = ({ menus, onMenuDeleted }) => {
                 <td className="p-2">
                   {menu.itemPrice.map((item, index) => (
                     <div key={index}>
-                      {item.shortDescription}: ${item.price.toFixed(2)}
+                      {item.shortDescription}:{" "}
+                      {numberFormatter.format(item.price)}
                     </div>
                   ))}
                 </td>
-
+                {/* <td className="p-2">
+                  {menu.addOns.map((addOn, index) => (
+                    <div key={index}>
+                      {addOn.name}: {addOn.options.join(", ")}
+                    </div>
+                  ))}
+                </td> */}
                 <td className="p-2">{menu.addOns.join(", ")}</td>
                 <td className="p-2">{menu.packaging.join(", ")}</td>
                 <td className="p-2">{menu.category}</td>
