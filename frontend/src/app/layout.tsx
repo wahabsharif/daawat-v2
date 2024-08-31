@@ -5,6 +5,7 @@ import ScrollToTop from "@/components/common/ScrollToTop";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export const metadata: Metadata = {
   title: "Daawat",
@@ -16,21 +17,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const NEXT_PUBLIC_GOOGLE_CLIENT_ID =
+    process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
+
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NavBar />
-          <MobileNavBar />
-          <ScrollToTop />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <GoogleOAuthProvider clientId={NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NavBar />
+            <MobileNavBar />
+            <ScrollToTop />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );
