@@ -57,13 +57,8 @@ const MenuList: FC<MenuListProps> = ({ menus, onMenuDeleted }) => {
                     </div>
                   ))}
                 </td>
-                <td className="p-2">
-                  {menu.addOns.map((addOn, index) => (
-                    <div key={index}>
-                      {addOn.name}: {addOn.options.join(", ")}
-                    </div>
-                  ))}
-                </td>
+
+                <td className="p-2">{menu.addOns.join(", ")}</td>
                 <td className="p-2">{menu.packaging.join(", ")}</td>
                 <td className="p-2">{menu.category}</td>
                 <td className="p-2">{menu.subCategory}</td>

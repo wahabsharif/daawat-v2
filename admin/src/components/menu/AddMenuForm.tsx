@@ -115,10 +115,25 @@ const AddMenuForm = () => {
     index?: number
   ) => {
     if (index !== undefined) {
-      // Handle nested array updates (e.g., addOns)
-      const updatedAddOns = [...formData.addOns];
-      updatedAddOns[index] = e.target.value;
-      setFormData({ ...formData, addOns: updatedAddOns });
+      if (field === "itemPrice") {
+        // Handle nested array updates for itemPrice
+        const updatedItemPrice = [...formData.itemPrice];
+        updatedItemPrice[index] = {
+          ...updatedItemPrice[index],
+          [e.target.name]: e.target.value,
+        };
+        setFormData({ ...formData, itemPrice: updatedItemPrice });
+      } else if (field === "addOns") {
+        // Handle nested array updates for addOns
+        const updatedAddOns = [...formData.addOns];
+        updatedAddOns[index] = e.target.value;
+        setFormData({ ...formData, addOns: updatedAddOns });
+      } else if (field === "packaging") {
+        // Handle nested array updates for packaging
+        const updatedPackaging = [...formData.packaging];
+        updatedPackaging[index] = e.target.value;
+        setFormData({ ...formData, packaging: updatedPackaging });
+      }
     } else {
       setFormData({ ...formData, [field]: e.target.value });
     }
@@ -192,15 +207,17 @@ const AddMenuForm = () => {
           <div key={index} className="flex space-x-2">
             <input
               type="text"
+              name="shortDescription" // Add name attribute
               value={item.shortDescription}
-              onChange={(e) => handleChange(e, "shortDescription", index)}
-              placeholder="Item Description"
+              onChange={(e) => handleChange(e, "itemPrice", index)}
+              placeholder="Item Price Description"
               className="flex-1 p-2 border text-gray-800 border-gray-300 rounded"
             />
             <input
               type="number"
+              name="price" // Add name attribute
               value={item.price}
-              onChange={(e) => handleChange(e, "price", index)}
+              onChange={(e) => handleChange(e, "itemPrice", index)}
               placeholder="Price"
               className="flex-1 p-2 border text-gray-800 border-gray-300 rounded"
             />
