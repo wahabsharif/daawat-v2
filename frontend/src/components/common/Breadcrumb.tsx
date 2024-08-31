@@ -22,7 +22,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ paths }) => {
 
       {/* Breadcrumb */}
       <div className="absolute bottom-0 w-full flex items-center justify-center pb-10">
-        <div className="relative flex px-5 py-3 max-w-sm text-gray-800 bg-white/30 backdrop-blur-md rounded-xl dark:bg-black/30 z-10">
+        <div className="relative flex px-5 py-3 max-w-sm text-gray-800 bg-white/30 backdrop-blur-md rounded-xl dark:bg-black/30 z-0">
           <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li className="inline-flex items-center">
               <Link

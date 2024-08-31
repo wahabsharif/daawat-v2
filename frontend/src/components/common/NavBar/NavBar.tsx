@@ -9,7 +9,7 @@ import Logo from "./Logo";
 
 const NavBar: React.FC = () => {
   return (
-    <nav className="fixed z-50 playfair-font bg-white/30 backdrop-blur-md text-dark dark:bg-black/30 dark:text-light uppercase w-full shadow-lg transition-colors duration-300 hidden md:block">
+    <nav className="fixed z-10 playfair-font bg-white/30 backdrop-blur-md text-dark dark:bg-black/30 dark:text-light uppercase w-full shadow-lg transition-colors duration-300 hidden md:block">
       <TopBar />
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">

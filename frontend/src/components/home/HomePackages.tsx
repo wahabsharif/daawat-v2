@@ -39,15 +39,13 @@ export function HomePackages() {
               {/* Social Media Icons */}
               <div className="relative flex flex-col items-center justify-center mt-auto w-full">
                 <div className="absolute inset-x-0 bottom-0 h-12 sm:h-14 md:h-16 bg-gradient-to-t rounded-xl from-gray-900 to-transparent dark:from-gray-800 dark:to-transparent" />
-                <div className="relative flex space-x-3 sm:space-x-4 z-10 py-2 sm:py-4">
+                <div className="relative flex space-x-3 sm:space-x-4 py-2 sm:py-4">
                   <Link href={"https://wa.me/phone_number"}>
                     {" "}
-                    {/* Use a valid WhatsApp link */}
                     <IoLogoWhatsapp className="text-xl sm:text-2xl md:text-3xl text-dark dark:text-light" />
                   </Link>
                   <Link href={"tel:phone_number"}>
                     {" "}
-                    {/* Use a valid phone link */}
                     <FaPhone className="text-xl sm:text-2xl md:text-3xl text-dark dark:text-light" />
                   </Link>
                 </div>

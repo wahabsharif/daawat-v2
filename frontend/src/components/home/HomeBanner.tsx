@@ -19,7 +19,7 @@ function HomeBanner() {
         </video>
       </div>
 
-      <div className="relative z-10 text-center p-4">
+      <div className="relative  text-center p-4">
         <GradualSpacing
           className="font-display text-6xl md:text-8xl lg:text-9xl font-bold tracking-[-0.1em] text-dark dark:text-light md:leading-[5rem]"
           text="Daawat.pk"
