@@ -5,20 +5,24 @@ import { Menu } from "@/types/types";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+import TripleLoader from "../common/Loaders/TripleLoader";
 
 const MenuGrid = () => {
   const [menus, setMenus] = useState<Menu[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch all menus from the API
     const fetchMenus = async () => {
       try {
-        const response = await axios.get(`${NEXT_PUBLIC_API_URL}api/menus`);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}api/menus`
+        );
         setMenus(response.data);
       } catch (error) {
         console.error("Failed to fetch menus", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -30,6 +34,14 @@ const MenuGrid = () => {
     currency: "PKR",
     maximumFractionDigits: 0,
   });
+
+  if (loading) {
+    return (
+      <section className="p-10 flex justify-center items-center min-h-screen">
+        <TripleLoader />
+      </section>
+    );
+  }
 
   return (
     <section className="p-10">
@@ -47,7 +59,7 @@ const MenuGrid = () => {
           return (
             <MagicCard
               key={menu._id}
-              className="cursor-pointer  h-64 w-64 flex flex-col items-center justify-center shadow-2xl p-4"
+              className="cursor-pointer h-64 w-64 flex flex-col items-center justify-center shadow-2xl p-4"
             >
               <Link href={`/menu/${menu._id}`}>
                 <h3 className="text-xl font-semibold text-center">

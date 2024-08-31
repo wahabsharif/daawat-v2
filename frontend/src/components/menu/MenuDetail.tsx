@@ -2,6 +2,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Menu } from "@/types/types";
+import SingleLoader from "@/components/common/Loaders/SingleLoader";
 
 interface MenuDetailProps {
   onTitleChange: (title: string) => void;
@@ -31,7 +32,12 @@ const MenuDetail: React.FC<MenuDetailProps> = ({ onTitleChange }) => {
     }
   }, [id, onTitleChange]);
 
-  if (!menu) return <div>Loading...</div>;
+  if (!menu)
+    return (
+      <div>
+        <SingleLoader />
+      </div>
+    );
 
   // Formatter for prices
   const formatter = new Intl.NumberFormat("en-US", {

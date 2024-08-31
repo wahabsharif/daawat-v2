@@ -54,3 +54,14 @@ h6 {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.gold-gradient-loader {
+  border: 8px solid transparent;
+  border-radius: 50%;
+  border-top: 8px solid transparent;
+  border-left: 8px solid transparent;
+  border-right: 8px solid #ffd700; /* Gold color for the gradient effect */
+  border-bottom: 8px solid #ffd700; /* Gold color for the gradient effect */
+  border-image: linear-gradient(45deg, #ffd700, #ffb500);
+  border-image-slice: 1;
+}
