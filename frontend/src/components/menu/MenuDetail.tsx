@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Menu } from "@/types/types";
 
-const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 interface MenuDetailProps {
   onTitleChange: (title: string) => void;
 }
@@ -18,7 +16,7 @@ const MenuDetail: React.FC<MenuDetailProps> = ({ onTitleChange }) => {
       const fetchMenu = async () => {
         try {
           const response = await axios.get(
-            `${NEXT_PUBLIC_API_URL}api/menus/${id}`
+            `${process.env.NEXT_PUBLIC_API_URL}api/menus/${id}`
           );
           setMenu(response.data);
           if (response.data && onTitleChange) {
@@ -35,17 +33,64 @@ const MenuDetail: React.FC<MenuDetailProps> = ({ onTitleChange }) => {
 
   if (!menu) return <div>Loading...</div>;
 
+  // Formatter for prices
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "PKR",
+    maximumFractionDigits: 0,
+  });
+
   return (
-    <div>
-      <h1>{menu.title}</h1>
-      <p>{menu.description}</p>
-      <div>
-        {menu.itemPrice.map((item, index) => (
-          <div key={index}>
-            {item.shortDescription}: ${item.price.toFixed(2)}
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-2">{menu.title}</h1>
+      {menu.description && <p className="text-lg mb-4">{menu.description}</p>}
+
+      <div className="mb-4">
+        <h2 className="text-xl font-semibold mb-2">Prices</h2>
+        {menu.itemPrice.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {menu.itemPrice.map((item, index) => (
+              <div
+                key={index}
+                className="p-4 border rounded-lg cursor-pointer shadow-sm"
+              >
+                <p className="text-sm font-medium">{item.shortDescription}</p>
+                <p className="text-lg font-semibold">
+                  {formatter.format(item.price)}
+                </p>
+              </div>
+            ))}
           </div>
-        ))}
+        ) : (
+          <p>No prices available.</p>
+        )}
       </div>
+
+      {menu.addOns.length > 0 && (
+        <div className="mb-4">
+          <h2 className="text-xl font-semibold">Add-Ons</h2>
+          <ul>
+            {menu.addOns.map((addOn, index) => (
+              <li key={index} className="text-sm mb-1">
+                {addOn}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {menu.packaging.length > 0 && (
+        <div className="mb-4">
+          <h2 className="text-xl font-semibold">Packaging</h2>
+          <ul>
+            {menu.packaging.map((pack, index) => (
+              <li key={index} className="text-sm mb-1">
+                {pack}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

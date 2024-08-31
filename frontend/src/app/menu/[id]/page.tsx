@@ -2,6 +2,7 @@
 
 import Breadcrumb from "@/components/common/Breadcrumb";
 import MenuDetail from "@/components/menu/MenuDetail";
+import MenuGrid from "@/components/menu/MenuGrid";
 import React, { useState } from "react";
 
 const MenuDetailPage: React.FC = () => {
@@ -13,6 +14,7 @@ const MenuDetailPage: React.FC = () => {
     <>
       <Breadcrumb paths={paths} />
       <MenuDetail onTitleChange={setMenuTitle} />
+      <MenuGrid />
     </>
   );
 };
