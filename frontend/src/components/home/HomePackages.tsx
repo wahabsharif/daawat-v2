@@ -9,9 +9,9 @@ export function HomePackages() {
   return (
     <section className="p-4 sm:p-6 md:p-10 mt-2">
       <div className="p-4">
-        <h1 className="text-center uppercase text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gradient">
+        <h2 className="text-center uppercase text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gradient">
           Corporate Food Catering
-        </h1>
+        </h2>
       </div>
       <div className="flex flex-wrap gap-4">
         {homePackagesCardsData.map((card, index) => (
