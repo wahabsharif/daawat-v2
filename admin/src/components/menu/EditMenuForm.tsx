@@ -12,6 +12,7 @@ type SubCategoriesType = {
 
 const categories = [
   "Deals",
+  "Daig",
   "Food",
   "Catering",
   "Tandoor",
@@ -22,6 +23,7 @@ const categories = [
 
 const subCategories: SubCategoriesType = {
   Deals: ["Muharram Specials", "Ramadan Deal", "Rabi ul Awal Deal"],
+  Daig: ["Muharram Daig", "Ramadan Daig", "Rabi ul Awal Daig", "Sadqa Daig"],
   Food: [
     "Rice",
     "Qorma / Curry",

@@ -13,7 +13,7 @@ function AddMenuButton() {
   return (
     <button
       onClick={handleClick}
-      className="px-4 py-2 bg-blue-500 font-semibold text-white rounded-xl hover:bg-blue-600"
+      className="px-4 py-2 m-4 bg-blue-500 font-semibold text-white rounded-xl hover:bg-blue-600"
     >
       Add Menu
     </button>
