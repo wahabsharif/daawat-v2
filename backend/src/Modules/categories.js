@@ -1,5 +1,6 @@
 const CATEGORY = [
   "Deals",
+  "Daig",
   "Food",
   "Catering",
   "Tandoor",
@@ -10,6 +11,7 @@ const CATEGORY = [
 
 const SUB_CATEGORY = {
   Deals: ["Muharram Specials", "Ramadan Deal", "Rabi ul Awal Deal"],
+  Daig: ["Muharram Daig", "Ramadan Daig", "Rabi ul Awal Daig", "Sadqa Daig"],
   Food: [
     "Rice",
     "Qorma / Curry",
