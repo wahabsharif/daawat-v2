@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import DeleteHiTeaButton from "./DeleteHiTeaButton";
+import AddHiTeaButton from "./AddHiTeaButton";
 
 const HiTeaList = () => {
   const [hiTeaList, setHiTeaList] = useState<any[]>([]);
@@ -20,7 +21,10 @@ const HiTeaList = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Hi-Tea List</h1>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-2xl font-bold">Hi-Tea List</h1>
+        <AddHiTeaButton />
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-teal-800 rounded-xl shadow-md">
           <thead className="bg-teal-700 border-b rounded-xl">
@@ -52,12 +56,12 @@ const HiTeaList = () => {
                   PKR {item.price.toLocaleString()}
                 </td>
                 <td className="px-6 py-4 space-x-4 whitespace-nowrap text-sm font-medium">
-                  <Link
+                  {/* <Link
                     href={`/hi-tea/edit/${item._id}`}
                     className="text-blue-500 hover:text-blue-600"
                   >
                     Edit
-                  </Link>
+                  </Link> */}
                   <DeleteHiTeaButton id={item._id} />
                 </td>
               </tr>
