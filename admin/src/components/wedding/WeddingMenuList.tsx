@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Link from "next/link";
 import AddWeddingMenuButton from "./AddWeddingMenuButton";
+import EditForm from "./EditForm"; // Import EditForm and WeddingMenu type
 
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -21,10 +21,11 @@ interface WeddingMenu {
   }[];
   pricing: Pricing[];
 }
-
 const WeddingMenuList: React.FC = () => {
   const [menus, setMenus] = useState<WeddingMenu[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [editingMenu, setEditingMenu] = useState<WeddingMenu | null>(null);
+  const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchMenus = async () => {
@@ -44,6 +45,26 @@ const WeddingMenuList: React.FC = () => {
       setMenus(menus.filter((menu) => menu._id !== id));
     } catch (error) {
       setError("Error deleting wedding menu");
+    }
+  };
+
+  const handleEditClick = (menu: WeddingMenu) => {
+    setEditingMenu(menu);
+    setShowEditModal(true);
+  };
+
+  const handleEditSubmit = async (updatedMenu: WeddingMenu) => {
+    try {
+      await axios.put(
+        `${NEXT_PUBLIC_API_URL}api/wedding/${updatedMenu._id}`,
+        updatedMenu
+      );
+      setMenus(
+        menus.map((menu) => (menu._id === updatedMenu._id ? updatedMenu : menu))
+      );
+      setShowEditModal(false);
+    } catch (error) {
+      setError("Error updating wedding menu");
     }
   };
 
@@ -110,22 +131,31 @@ const WeddingMenuList: React.FC = () => {
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                 <button
+                  onClick={() => handleEditClick(menu)}
+                  className="text-blue-600 hover:text-blue-900 mr-4"
+                >
+                  Edit
+                </button>
+                <button
                   onClick={() => handleDelete(menu._id)}
                   className="text-red-600 hover:text-red-900"
                 >
                   Delete
                 </button>
-                <Link
-                  href={`/edit/${menu._id}`}
-                  className="text-blue-600 hover:text-blue-900 ml-4"
-                >
-                  Edit
-                </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Edit Menu Modal */}
+      {showEditModal && editingMenu && (
+        <EditForm
+          menu={editingMenu}
+          onClose={() => setShowEditModal(false)}
+          onSave={handleEditSubmit}
+        />
+      )}
     </div>
   );
 };
