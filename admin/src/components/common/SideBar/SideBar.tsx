@@ -37,6 +37,15 @@ const SideBar = () => {
           </li>
           <li className="mb-4">
             <Link
+              href="/wedding"
+              className="flex items-center text-gray-300 hover:text-white"
+            >
+              <MdOutlineMenuBook className="mr-3" />
+              Wedding Menu
+            </Link>
+          </li>
+          <li className="mb-4">
+            <Link
               href="/hi-tea"
               className="flex items-center text-gray-300 hover:text-white"
             >

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import slugify from "slugify";
+import { useRouter } from "next/navigation";
 
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -22,6 +23,8 @@ const AddWeddingMenuForm: React.FC = () => {
   const [itemGroups, setItemGroups] = useState<ItemGroup[]>([]);
   const [pricing, setPricing] = useState<Pricing[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     setSlug(slugify(title, { lower: true, strict: true }));
@@ -76,6 +79,10 @@ const AddWeddingMenuForm: React.FC = () => {
         items: itemGroups,
         pricing,
       });
+      setSuccessMessage("Wedding menu created successfully!");
+      setTimeout(() => {
+        router.push("/wedding");
+      }, 2000); // Redirect after 2 seconds
     } catch (error) {
       setError("Error creating wedding menu");
     }
@@ -208,6 +215,7 @@ const AddWeddingMenuForm: React.FC = () => {
           </div>
 
           {error && <p className="text-red-500">{error}</p>}
+          {successMessage && <p className="text-green-500">{successMessage}</p>}
           <button
             type="submit"
             className="w-full text-center items-center px-4 py-2 bg-green-800 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
