@@ -7,6 +7,7 @@ const userRoutes = require("./routes/userRoutes");
 const announcementMessageRoutes = require("./routes/announcementMessageRoutes");
 const menuRoutes = require("./routes/menuRoutes");
 const hiTeaRoutes = require("./routes/hiTeaRoutes");
+const weddingRoutes = require("./routes/weddingRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -43,6 +44,7 @@ app.use("/api", userRoutes);
 app.use("/api", announcementMessageRoutes);
 app.use("/api", menuRoutes);
 app.use("/api", hiTeaRoutes);
+app.use("/api", weddingRoutes);
 
 // Default route handler
 app.get("/", (req, res) => {

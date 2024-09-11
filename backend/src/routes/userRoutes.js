@@ -23,7 +23,7 @@ router.post("/user/logout", auth, logoutUser);
 // Get current user route
 router.get("/user/me", auth, getCurrentUser);
 // Update current user route
-router.put("/user/me", auth, updateCurrentUser); // Use the updateCurrentUser function
+router.put("/user/me", auth, updateCurrentUser);
 // Check username availability
 router.get("/user/:username", checkUsernameAvailability);
 // CRUD routes (only accessible to admins)
