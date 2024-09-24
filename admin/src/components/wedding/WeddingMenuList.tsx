@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddWeddingMenuButton from "./AddWeddingMenuButton";
-import EditForm from "./EditForm"; // Import EditForm and WeddingMenu type
+import EditForm from "./EditForm";
+import * as XLSX from "xlsx"; // Import XLSX for Excel export
 
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -21,6 +22,7 @@ interface WeddingMenu {
   }[];
   pricing: Pricing[];
 }
+
 const WeddingMenuList: React.FC = () => {
   const [menus, setMenus] = useState<WeddingMenu[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -68,11 +70,65 @@ const WeddingMenuList: React.FC = () => {
     }
   };
 
+  const handleExportToExcel = () => {
+    // Prepare the formatted data for Excel
+    const formattedData = menus.map((menu) => ({
+      Title: menu.title,
+      Items: menu.items
+        .map((item) => `${item.itemsTitle}: ${item.items.join(", ")}`)
+        .join("; "),
+      Pricing: menu.pricing
+        .map((p) => `Persons: ${p.persons}, Price: ${p.price}`)
+        .join("; "),
+    }));
+
+    // Create the worksheet and add headers
+    const worksheet = XLSX.utils.json_to_sheet(formattedData, {
+      header: ["Title", "Items", "Pricing"], // Define custom headers
+      skipHeader: false,
+    });
+
+    // Apply auto-width to columns
+    const columnWidths = [
+      { wch: 20 }, // Title column width
+      { wch: 50 }, // Items column width
+      { wch: 30 }, // Pricing column width
+    ];
+    worksheet["!cols"] = columnWidths;
+
+    // Create a new workbook and append the worksheet
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "WeddingMenus");
+
+    // Style the headers (optional)
+    const range = XLSX.utils.decode_range(worksheet["!ref"] || "");
+    for (let C = range.s.c; C <= range.e.c; C++) {
+      const cellAddress = XLSX.utils.encode_cell({ r: 0, c: C });
+      if (worksheet[cellAddress]) {
+        worksheet[cellAddress].s = {
+          font: { bold: true, color: { rgb: "FFFFFF" } }, // White bold text
+          fill: { fgColor: { rgb: "4CAF50" } }, // Green background
+        };
+      }
+    }
+
+    // Trigger download of the formatted Excel file
+    XLSX.writeFile(workbook, "wedding_menus.xlsx");
+  };
+
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold mb-4">Wedding Menus</h2>
-        <AddWeddingMenuButton />
+        <div>
+          <AddWeddingMenuButton />
+          <button
+            onClick={handleExportToExcel}
+            className="ml-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+          >
+            Export to Excel
+          </button>
+        </div>
       </div>
       {error && <p className="text-red-500">{error}</p>}
       <table className="min-w-full divide-y divide-gray-200">
