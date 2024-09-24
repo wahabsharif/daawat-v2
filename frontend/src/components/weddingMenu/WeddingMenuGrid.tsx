@@ -13,10 +13,6 @@ interface Pricing {
 interface WeddingMenu {
   _id: string;
   title: string;
-  items: {
-    itemsTitle: string;
-    items: string[];
-  }[];
   pricing: Pricing[];
 }
 
@@ -38,14 +34,20 @@ const WeddingMenuGrid: React.FC = () => {
     fetchMenus();
   }, []);
 
-  //   const handleDelete = async (id: string) => {
-  //     try {
-  //       await axios.delete(`${NEXT_PUBLIC_API_URL}api/wedding/${id}`);
-  //       setMenus(menus.filter((menu) => menu._id !== id));
-  //     } catch (error) {
-  //       setError("Error deleting wedding menu");
-  //     }
-  //   };
+  const getLowestPricing = (pricing: Pricing[]) => {
+    if (pricing.length === 0) return { persons: 0, price: 0 };
+
+    return pricing.reduce((lowest, current) => {
+      if (current.price < lowest.price) {
+        return current;
+      }
+      return lowest;
+    }, pricing[0]);
+  };
+
+  const formatPrice = (price: number) => {
+    return price.toLocaleString("en-IN"); // Formats the number based on Indian numbering system
+  };
 
   return (
     <div className="p-6">
@@ -56,47 +58,20 @@ const WeddingMenuGrid: React.FC = () => {
       </div>
       {error && <p className="text-red-500">{error}</p>}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {menus.map((menu) => (
-          <MagicCard
-            key={menu._id}
-            className="border rounded-lg shadow p-4 bg-gray-800"
-          >
-            <Link href={`/wedding/${menu._id}`}>
-              <h3 className="text-xl font-bold mb-2">{menu.title}</h3>
-              <div className="mb-4">
-                <h4 className="font-semibold">Items:</h4>
-                {menu.items.map((itemGroup, index) => (
-                  <div key={index} className="mb-2">
-                    <h5 className="font-bold mb-1">{itemGroup.itemsTitle}</h5>
-                    <ul className="list-disc pl-5">
-                      {itemGroup.items.map((item, itemIndex) => (
-                        <li key={itemIndex} className="text-sm">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-              <div className="mb-4">
-                <h4 className="font-semibold">Pricing:</h4>
-                {menu.pricing.map((price, index) => (
-                  <div
-                    key={index}
-                    className="border p-2 rounded bg-gray-800 mb-2"
-                  >
-                    <p>
-                      <strong>Persons:</strong> {price.persons}
-                    </p>
-                    <p>
-                      <strong>Price:</strong> {price.price}
-                    </p>
-                  </div>
-                ))}
-              </div>
+        {menus.map((menu) => {
+          const lowestPricing = getLowestPricing(menu.pricing);
+          return (
+            <Link key={menu._id} href={`/wedding/${menu._id}`}>
+              <MagicCard className="border rounded-lg shadow p-4 bg-gray-800 cursor-pointer">
+                <h3 className="text-xl font-bold mb-2">{menu.title}</h3>
+                <p>
+                  <strong>Starting from:</strong> {lowestPricing.persons}{" "}
+                  persons at Rs.{formatPrice(lowestPricing.price)}
+                </p>
+              </MagicCard>
             </Link>
-          </MagicCard>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
