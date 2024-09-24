@@ -7,6 +7,7 @@ import SingleLoader from "@/components/common/Loaders/SingleLoader";
 import Image from "next/image";
 import weddingMenuImage from "@/assets/menu/wedding-menu-image.jpeg";
 import { LiaTimesSolid } from "react-icons/lia";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 
 interface Pricing {
   persons: number;
@@ -149,6 +150,16 @@ const WeddingMenuDetail: React.FC = () => {
                 <LiaTimesSolid />
               </button>
             </div>
+          )}
+
+          {/* Pass required props to AddToCartButton */}
+          {selectedPrice && (
+            <AddToCartButton
+              id={menu._id}
+              title={menu.title}
+              persons={selectedPrice.persons}
+              price={selectedPrice.price}
+            />
           )}
         </div>
       </div>

@@ -3,10 +3,10 @@ import MobileNavBar from "@/components/common/NavBar/MobileNavBar";
 import NavBar from "@/components/common/NavBar/NavBar";
 import ScrollToTop from "@/components/common/ScrollToTop";
 import { ThemeProvider } from "@/components/common/Ui/ThemeProvider";
+import ReduxProvider from "@/redux/ReduxProvider";
 import "@/styles/globals.css";
-import type { Metadata } from "next";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { Provider } from "react-redux";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Daawat",
@@ -25,20 +25,20 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex flex-col min-h-screen">
         <GoogleOAuthProvider clientId={NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
-          {/* <Provider store={store}> */}
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <NavBar />
-            <MobileNavBar />
-            <ScrollToTop />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </ThemeProvider>
-          {/* </Provider> */}
+          <ReduxProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <NavBar />
+              <MobileNavBar />
+              <ScrollToTop />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </ThemeProvider>
+          </ReduxProvider>
         </GoogleOAuthProvider>
       </body>
     </html>
