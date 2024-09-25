@@ -2,6 +2,16 @@
 
 ###
 
+<br clear="both">
+
+<div align="center">
+  <img height="300" src="https://raw.githubusercontent.com/wahabsharif/daawat-v2/refs/heads/main/frontend/src/assets/daawat-web-preview.png"  />
+</div>
+
+###
+
+###
+
 <p align="left">"Daawat is an e-commerce Web app with an Admin Dashboard that offers top-tier catering services, specializing in diverse cuisines for weddings, sadqa, and events. From delicious daig preparations to custom menus, we provide exceptional food experiences tailored to every occasion."</p>
 
 ###
@@ -36,12 +46,4 @@
   <img src="https://skillicons.dev/icons?i=mongodb" height="40" alt="mongodb logo"  />
 </div>
 
-###
 
-<br clear="both">
-
-<div align="center">
-  <img height="300" src="https://raw.githubusercontent.com/wahabsharif/daawat-v2/refs/heads/main/frontend/src/assets/daawat-web-preview.png"  />
-</div>
-
-###
